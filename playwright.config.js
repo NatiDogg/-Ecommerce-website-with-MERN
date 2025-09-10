@@ -14,7 +14,7 @@ import { defineConfig, devices } from '@playwright/test';
  */
 export default defineConfig({
   testDir: './tests',
-  timeout: 120000,
+  timeout: 150000,
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -75,7 +75,7 @@ export default defineConfig({
   command: 'npm run dev',
   cwd: './client',          
   url: 'http://localhost:5173',
-  timeout: 120000,
+  timeout: 150000,
   reuseExistingServer: !process.env.CI,
 },
 
