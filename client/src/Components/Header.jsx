@@ -71,7 +71,7 @@ const Header = () => {
                                <input onChange={(e)=>handleInput(e)} value={value} type="text" placeholder='type here..' className={`${showSearch ? 'w-[190px] text-sm px-6 bg-transparent outline-none  ': "hidden"}`} />
                             </div>
                              <div onClick={()=>setShowSearch(prevShow=> !prevShow)} className='cursor-pointer'>
-                                 <FaSearch onClick={handleProduct} size={27} className='  text-white bg-slate-700 px-1 rounded-full  ' /> 
+                                 <FaSearch data-testid="search-icon" onClick={handleProduct} size={27} className='  text-white bg-slate-700 px-1 rounded-full  ' /> 
                              </div>
                              
                          </div>
@@ -89,7 +89,7 @@ const Header = () => {
                                {/*Cart*/}
                                  <div onClick={()=>navigate('/cart')} className='flex gap-2     items-center cursor-pointer p-2 rounded-full bg-white relative' >
                                     <FaShoppingBasket size={27} />
-                                       <label  className='absolute bottom-8 -right-2 text-xs font-bold' >{items}</label>
+                                       <label  className='absolute bottom-8 -right-2 text-xs font-bold' >{items}</label> 
                                 </div>
                                  {/*user profile*/}
                                    {user ? <div className='cursor-pointer group relative'>
