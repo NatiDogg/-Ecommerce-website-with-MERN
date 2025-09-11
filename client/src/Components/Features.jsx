@@ -5,7 +5,7 @@ import {TbPackageImport} from 'react-icons/tb'
 import {MdCurrencyExchange} from 'react-icons/md';
 const Features = () => {
   return (
-     <section className='px-6 py-6 w-full'>
+     <section data-testid = "features-section" className='px-6 py-6 w-full'>
           <div className='max-w-[1360px] mx-auto grid grid-cols-2 md:grid-cols-4  gap-4 px-8 py-4'>
               <div className='flex flex-row gap-3 items-center'>
                   <LiaShippingFastSolid size={28} />
