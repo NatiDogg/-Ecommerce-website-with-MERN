@@ -46,7 +46,7 @@ const Collection = () => {
           </div>
           <div data-testid = "collection-grid" className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6'>
                {currentItems.length > 0 ? currentItems.map((product,index)=>(
-                       <Item key={product._id} product={product} data-testid= {`collection-item-${index}`} />
+                       <Item key={product._id} index={index} product={product} data-testid= {`collection-item-${index}`} />
                )): <p data-testid = "collection-empty" className='text-xl text-red-500 col-span-3 font-semibold  w-full text-center'>Oops! nothing matched your search</p>}
           </div>
               {/* Pagination Controls */}
