@@ -3,14 +3,7 @@ import {test, expect} from '@playwright/test';
 
 
 test.describe("Item Component Test",()=>{
-      const TestProduct = {
-           _id: "123",
-           name: "T-shirt",
-           description: "comfortable t-shirt",
-           category : "Clothing",
-           image: ["/img1.png", "/img2.png"],
-           offerPrice: 20
-      }
+     
 
      test.beforeEach(async ({page})=>{
          await page.goto("/collection");
