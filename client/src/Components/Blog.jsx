@@ -3,7 +3,7 @@ import { blogs } from '../Data/data.js';
 
 const Blog = () => {
   return (
-       <section className='px-6 py-10 w-full'>
+       <section data-testid = "blog-section" className='px-6 py-10 w-full'>
                  <div className='max-w-[1360px] mx-auto px-4 py-4 flex flex-col gap-6'>
                     <div className=' w-[73%] lg:w-[30%] flex flex-col gap-1'>
                         <div className='flex gap-1 items-center'>

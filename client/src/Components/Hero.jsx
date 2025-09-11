@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const Hero = () => {
   return (
-       <section className={`w-full px-4 py-6 bg-[url('/src/assets/bg.png')] bg-cover bg-center bg-no-repeat h-[400px] md:h-[711px]`}>
+       <section data-testid = "hero-section" className={`w-full px-4 py-6 bg-[url('/src/assets/bg.png')] bg-cover bg-center bg-no-repeat h-[400px] md:h-[711px]`}>
              <div className='max-w-[1360px]  mx-auto flex gap-10 justify-between items-center  '>
                 <div className=' px-1 md:px-6 py-10  md:py-12 flex flex-col justify-start md:justify-center items-start h-[600px] w-full'>
                      <p className=' mb-1 font-paci text-gray-500 font-light text-[17px] md:text-xl'>Fresh Fits for Frosty Days</p>

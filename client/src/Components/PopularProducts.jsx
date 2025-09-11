@@ -16,7 +16,7 @@ const PopularProducts = () => {
      },[products])
        
   return (
-      <section className='px-6 py-6 w-full'>
+      <section data-testid = "popularProducts-section" className='px-6 py-6 w-full'>
                       <div className='max-w-[1360px] mx-auto px-4 py-4 flex flex-col gap-6'>
                            <div className=' w-[70%] lg:w-[33%] flex flex-col gap-1'>
                                <div className='flex gap-1 items-center'>

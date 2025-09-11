@@ -7,7 +7,7 @@ const Categories = () => {
     const {navigate} = useContext(shopContext);
    
   return (
-        <section className='px-6 py-2 w-full'>
+        <section data-testid = "categories-section" className='px-6 py-2 w-full'>
                  <div className='max-w-[1360px] mx-auto px-4 py-4 flex flex-col gap-6'>
                       <div className='flex gap-1 items-center'>
                          <h2 className='font-semibold text-xl'>Category</h2>
