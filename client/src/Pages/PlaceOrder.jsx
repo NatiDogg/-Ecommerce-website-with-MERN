@@ -34,9 +34,7 @@ const PlaceOrder = () => {
           if(allFieldsEmpty){
              return toast.error("please fill all the form fields!!");
           }
-          else{
-            setShowUserLogin(true);
-          }
+         
          setFormData({
            fname : "",
          lname : "",
@@ -48,10 +46,11 @@ const PlaceOrder = () => {
          zipcode : "",
          country : ""
          })
+         setShowUserLogin(true);
       }
       
   return (
-    <section className='px-6 py-6 w-full bg-gray-100  '>
+    <section data-testid = "place-order-page" className='px-6 py-6 w-full bg-gray-100  '>
          <div className='max-w-[1360px] relative mx-auto px-4 py-4 flex flex-col gap-8'>
                <div className=' w-[75%] lg:w-[50%] flex flex-col gap-1'>
                   <div className='flex gap-1 items-center'>
@@ -86,7 +85,7 @@ const PlaceOrder = () => {
                             </div>
                        </form>
                    </div>
-                   <div className='lg:mx-auto lg:w-[25%] lg:absolute lg:right-28 lg:bottom-6 lg:top-0  bg-white px-4 py-4'>
+                   <div className='lg:mx-auto lg:w-[25%] lg:absolute lg:right-28 lg:bottom-3 lg:top-0  bg-white px-4 py-4'>
                       <CartTotal method={method} setMethod={setMethod} />
                        <button type='submit' onClick={getData} className='bg-black py-2 px-4 text-white rounded-md mt-8 w-full'>Proceed to Order</button>
                    </div>
