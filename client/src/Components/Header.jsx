@@ -87,7 +87,7 @@ const Header = () => {
                                  </div>
                               }
                                {/*Cart*/}
-                                 <div onClick={()=>navigate('/cart')} className='flex gap-2     items-center cursor-pointer p-2 rounded-full bg-white relative' >
+                                 <div data-testid= "cart-icon" onClick={()=>navigate('/cart')} className='flex gap-2     items-center cursor-pointer p-2 rounded-full bg-white relative' >
                                     <FaShoppingBasket size={27} />
                                        <label  className='absolute bottom-8 -right-2 text-xs font-bold' >{items}</label> 
                                 </div>
