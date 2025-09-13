@@ -44,7 +44,7 @@ const ProductDetails = () => {
       }
           
   return (
-          <section className='px-6 py-6 w-full bg-gray-100'>
+          <section data-testid = "product-details-page" className='px-6 py-6 w-full bg-gray-100'>
                 {product ? 
                 <div className='max-w-[1360px] mx-auto px-4 py-4 flex flex-col gap-12'>
                       <div className='flex flex-row gap-1 '>
@@ -99,14 +99,14 @@ const ProductDetails = () => {
                                         const order = ["S","M","L","XL","XXL"]
                                         return order.indexOf(a) - order.indexOf(b)
                                     }).map((item,index)=>{
-                                        return <button onClick={()=>setSize(item)} key={index} className={`bg-gray-100 shadow-sm px-6 text-sm py-2 text-black ${item === size ? "border border-slate-800": ""}`}>
+                                        return <button data-testid = {`size-option-${item}`} onClick={()=>setSize(item)} key={index} className={`bg-gray-100 shadow-sm px-6 text-sm py-2 text-black ${item === size ? "border border-slate-800": ""}`}>
                                              {item}
                                         </button>
                                         
                                     })}
                                  </div>
                                  <div className='flex flex-row items-center gap-2 mt-2 w-full'>
-                                      <button onClick={()=>{addToCart(product._id,size);setSize("")}} className=' flex flex-row gap-1 items-center justify-center w-full lg:w-[50%] px-6 py-2 md:px-10 md:py-2 bg-slate-950 text-white '>Add to Cart <TbShoppingBagPlus /></button>
+                                      <button data-testid = "add-to-cart"  onClick={()=>{addToCart(product._id,size);setSize("")}} className=' flex flex-row gap-1 items-center justify-center w-full lg:w-[50%] px-6 py-2 md:px-10 md:py-2 bg-slate-950 text-white '>Add to Cart <TbShoppingBagPlus /></button>
                                       <button className='bg-gray-100 text-black py-3 px-4 md:px-6'><TbHeart/></button>
                                      
                                  </div>
