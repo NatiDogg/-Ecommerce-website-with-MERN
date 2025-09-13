@@ -41,7 +41,7 @@ const Login = () => {
            }
      }
   return (
-      <section className='fixed inset-0 z-40 flex items-center justify-center text-sm text-gray-600 bg-black/40 '>
+      <section data-testid = "login-page" className='fixed inset-0 z-40 flex items-center justify-center text-sm text-gray-600 bg-black/40 '>
           <form action="" onSubmit={onSumbitHandler} className='bg-white relative rounded-lg shadow-md px-4 py-6 w-[80%] md:w-[40%] lg:w-[30%]  flex flex-col justify-start items-center gap-6'>
                 <h1 className='text-3xl text-gray-600 font-bold '>User <span className='text-gray-900'>{state === "login" ? "Login" : "Register"}</span></h1>
                  {state === "register" ?
