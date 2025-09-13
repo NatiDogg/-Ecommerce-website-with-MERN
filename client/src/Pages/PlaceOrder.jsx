@@ -5,7 +5,7 @@ import { useLocation } from 'react-router-dom';
 import toast from 'react-hot-toast';
 const PlaceOrder = () => {
       const [method,setMethod] = useState("COD");
-      const {navigate,cartItems,setCartItems,products} = useContext(shopContext);
+      const {navigate,cartItems,setCartItems,products,setShowUserLogin} = useContext(shopContext);
       
       const [formData,setFormData] = useState({
          fname : "",
@@ -33,6 +33,9 @@ const PlaceOrder = () => {
         const allFieldsEmpty = Object.values(formData).some(value => value === '');
           if(allFieldsEmpty){
              return toast.error("please fill all the form fields!!");
+          }
+          else{
+            setShowUserLogin(true);
           }
          setFormData({
            fname : "",

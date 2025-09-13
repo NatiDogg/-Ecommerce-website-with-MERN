@@ -51,7 +51,7 @@ const ProductDetails = () => {
                            <p className='text-gray-500 text-sm flex flex-row gap-1'><Link to={'/'}>Home</Link>/</p>
                            <p className='text-gray-500 text-sm flex flex-row gap-1'><Link to={'/collection'}>Collection</Link>/</p>
                             <p className='text-gray-500 text-sm flex flex-row gap-1'><Link to={`/collection/${category}`}>{category}</Link>/</p>
-                            <p className='text-gray-500 text-sm'>{product.name}</p> 
+                            <p data-testid="product-title" className='text-gray-500 text-sm'>{product.name}</p> 
                       </div>
                      <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
                              <div className=' px-3 md:px-5 text-black flex flex-row  gap-4 '>
@@ -67,13 +67,13 @@ const ProductDetails = () => {
                                      </div>
                                  :
                                  ""}
-                                  <div className='bg-white shadow-md rounded-sm h-[300px] md:h-[430px] '>
+                                  <div data-testid="product-main-image" className='bg-white shadow-md rounded-sm h-[300px] md:h-[430px] '>
                                       <img src={image} alt="" height={370} width={460} className='object-cover aspect-square' />
                                   </div>
                              </div>
                              <div className='text-black shadow-md rounded-sm  bg-white px-3 md:px-5 py-3 flex flex-col gap-2'>
                                  <div>
-                                   <p className='text-xl md:text-2xl font-semibold text-black'>{product.name}</p> 
+                                   <p data-testid="product-name" className='text-xl md:text-2xl font-semibold text-black'>{product.name}</p> 
                                  </div>
                               {/*Rating*/}
                               <div className='flex flex-row gap-1 items-center'>
@@ -92,7 +92,7 @@ const ProductDetails = () => {
                                    <h4>{currency} {product.price}.00</h4>
                                </div>
                                 <div className=' w-full md:w-[80%]'>
-                                    <p className='text-gray-700 '>{product.description}</p>
+                                    <p data-testid="product-description" className='text-gray-700 '>{product.description}</p>
                                 </div>
                                  <div className='flex flex-row gap-2 mt-1'>
                                     {product.sizes.sort((a,b)=>{
