@@ -84,7 +84,7 @@ const Login = () => {
 
                  </div>
                  }
-                 <button type='button' onClick={()=>setShowUserLogin(false)} className='text-black absolute top-0 right-0 px-4 py-2 '><MdClose size={28} /></button>
+                 <button data-testid = "login-close-btn" type='button' onClick={()=>setShowUserLogin(false)} className='text-black absolute top-0 right-0 px-4 py-2 '><MdClose size={28} /></button>
           </form>
       </section>
   ) 
