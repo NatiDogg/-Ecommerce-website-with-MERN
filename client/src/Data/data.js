@@ -90,6 +90,7 @@ export const dummyProducts = [
       "Elevate your formal style with our classic striped shirt, perfect for business meetings and elegant gatherings.",
     category: "Men",
     popular: true,
+    inStock: true
   },
   {
     _id: "2",
@@ -102,6 +103,7 @@ export const dummyProducts = [
       "Stay fresh this summer with our floral printed slim-fit shirt, designed for comfort and a relaxed casual vibe.",
     category: "Men",
     popular: false,
+    inStock: true
   },
   {
     _id: "3",
@@ -114,6 +116,7 @@ export const dummyProducts = [
       "Command attention with our sharp longline blazer, designed for professional settings and stylish occasions.",
     category: "Men",
     popular: false,
+    inStock: true
   },
   {
     _id: "4",
@@ -126,6 +129,7 @@ export const dummyProducts = [
       "Stay sharp and warm with our tailored trench coat, designed to add sophistication to your winter wardrobe.",
     category: "Men",
     popular: false,
+    inStock: true
   },
   {
     _id: "5",
@@ -138,6 +142,7 @@ export const dummyProducts = [
       "Upgrade your office wear with these pleated trousers, offering a perfect balance of comfort and sharp looks.",
     category: "Men",
     popular: false,
+    inStock: true
   },
   {
     _id: "6",
@@ -150,6 +155,7 @@ export const dummyProducts = [
       "Complete your professional outfit with this leather bag, combining modern design with practical functionality.",
     category: "Men",
     popular: false,
+    inStock: true
   },
   {
     _id: "7",
@@ -162,6 +168,7 @@ export const dummyProducts = [
       "Walk confidently with these classic Oxford shoes, crafted for men who value comfort and timeless elegance.",
     category: "Men",
     popular: false,
+    inStock: true
   },
   {
     _id: "8",
@@ -174,6 +181,7 @@ export const dummyProducts = [
       "Stay cozy and stylish during winter with this hooded parka, designed for modern men who appreciate warmth and fashion.",
     category: "Men",
     popular: false,
+    inStock: true
   },
 
   // Women's Products
@@ -188,6 +196,7 @@ export const dummyProducts = [
       "Make a bold statement with this chic jumpsuit, crafted for the confident woman who values modern fashion.",
     category: "Women",
     popular: false,
+    inStock: true
   },
   {
     _id: "10",
@@ -200,6 +209,7 @@ export const dummyProducts = [
       "Enhance your outfit with this silk scarf, designed to bring a touch of refined elegance to any look.",
     category: "Women",
     popular: false,
+    inStock: true
   },
   {
     _id: "11",
@@ -212,6 +222,7 @@ export const dummyProducts = [
       "Step confidently with these stylish pumps, offering the perfect balance of comfort and sophistication.",
     category: "Women",
     popular: false,
+    inStock: true
   },
   {
     _id: "12",
@@ -224,6 +235,7 @@ export const dummyProducts = [
       "Elevate your wardrobe with this wool blend suit, designed for women who appreciate bold and timeless elegance.",
     category: "Women",
     popular: false,
+    inStock: true
   },
   {
     _id: "13",
@@ -236,6 +248,7 @@ export const dummyProducts = [
       "Experience ultimate comfort and style with this bomber jacket, made for women who love a sleek modern look.",
     category: "Women",
     popular: true,
+    inStock: true
   },
   {
     _id: "14",
@@ -248,6 +261,7 @@ export const dummyProducts = [
       "Stay casually chic with this denim shirt, tailored for women who enjoy easy-going yet fashionable outfits.",
     category: "Women",
     popular: false,
+    inStock: true
   },
 
   // Kids Products
@@ -262,6 +276,7 @@ export const dummyProducts = [
       "Give your kids a playful yet classic look with this polo shirt, combining comfort with vibrant style.",
     category: "Kids",
     popular: false,
+    inStock: true
   },
   {
     _id: "16",
@@ -274,6 +289,7 @@ export const dummyProducts = [
       "Keep your little ones cozy in this hooded jacket, designed for everyday comfort with playful charm.",
     category: "Kids",
     popular: false,
+    inStock: true
   },
   {
     _id: "17",
@@ -286,6 +302,7 @@ export const dummyProducts = [
       "Dress up your young ones with this formal shirt, ideal for special occasions and stylish outings.",
     category: "Kids",
     popular: true,
+    inStock: true
   },
   {
     _id: "18",
@@ -298,6 +315,7 @@ export const dummyProducts = [
       "Perfect for active kids, these slim fit chinos provide comfort and flexibility for daily adventures.",
     category: "Kids",
     popular: false,
+    inStock: true
   },
   {
     _id: "19",
@@ -310,6 +328,7 @@ export const dummyProducts = [
       "Finish your child’s outfit with this sleek leather belt, made for style and durability in every use.",
     category: "Kids",
     popular: false,
+    inStock: true
   },
   {
     _id: "20",
@@ -322,6 +341,7 @@ export const dummyProducts = [
       "Let your kids show their personality with this fun graphic tee, combining style and comfort easily.",
     category: "Kids",
     popular: false,
+    inStock: true
   },
   
 // Footwear Products (Corrected)
@@ -336,6 +356,7 @@ export const dummyProducts = [
     "Enjoy all-day comfort with these breathable running sneakers, designed for excellent support and ventilation.",
   category: "Footwear",
   popular: false,
+  inStock: true
 },
 {
   _id: "22",
@@ -348,6 +369,7 @@ export const dummyProducts = [
     "Step into timeless style with these leather loafers, offering easy slip-on wear and sophisticated comfort.",
   category: "Footwear",
   popular: true,
+  inStock: true
 },
 {
   _id: "23",
@@ -360,6 +382,7 @@ export const dummyProducts = [
     "Take on any terrain with these rugged hiking shoes, featuring strong grip soles and cushioned interior for long adventures.",
   category: "Footwear",
   popular: false,
+  inStock: true
 },
 {
   _id: "24",
@@ -372,6 +395,7 @@ export const dummyProducts = [
     "Elevate your casual look with these stylish high-top sneakers, providing both ankle support and modern design.",
   category: "Footwear",
   popular: false,
+  inStock: true
 },
 {
   _id: "25",
@@ -384,6 +408,7 @@ export const dummyProducts = [
     "Train comfortably with these flexible training shoes, engineered for agility, cushioning, and breathability.",
   category: "Footwear",
   popular: false,
+  inStock: true
 },
 {
   _id: "26",
@@ -396,6 +421,7 @@ export const dummyProducts = [
     "Perfect for daily wear, these casual slip-on shoes offer lightweight comfort and effortless style on the go.",
   category: "Footwear",
   popular: false,
+  inStock: true
 },
 
   // Winterwear Products
@@ -410,6 +436,7 @@ export const dummyProducts = [
       "Your toddler will shine in this charming dress, crafted for comfort and joy on every special occasion.",
     category: "Winterwear",
     popular: false,
+    inStock: true
   },
   {
     _id: "28",
@@ -422,6 +449,7 @@ export const dummyProducts = [
       "Fuel creativity with this fun printed t-shirt, perfect for active days full of adventure and laughter.",
     category: "Winterwear",
     popular: false,
+    inStock: true
   },
   {
     _id: "29",
@@ -434,6 +462,7 @@ export const dummyProducts = [
       "Keep rainy days cheerful with this colorful raincoat, combining waterproof comfort with playful style.",
     category: "Winterwear",
     popular: false,
+    inStock: true
   },
   {
     _id: "30",
@@ -446,6 +475,7 @@ export const dummyProducts = [
       "Make mealtimes fun with these soft, easy-to-clean bibs, designed for busy parents and happy babies.",
     category: "Winterwear",
     popular: false,
+    inStock: true
   },
   {
     _id: "31",
@@ -458,6 +488,7 @@ export const dummyProducts = [
       "Let your kids run freely with these comfortable slip-on sneakers, perfect for nonstop action and fun.",
     category: "Winterwear",
     popular: false,
+    inStock: true
   },
   {
     _id: "32",
@@ -470,6 +501,7 @@ export const dummyProducts = [
       "Wrap your baby in cozy warmth with this adorable blanket, featuring cute embroidered animal designs.",
     category: "Winterwear",
     popular: true,
+    inStock: true
   },
 
 // Sportswear Products
@@ -484,6 +516,7 @@ export const dummyProducts = [
     "Stay cool and dry during workouts with these lightweight running shorts, featuring moisture-wicking fabric for maximum performance.",
   category: "Sportswear",
   popular: false,
+  inStock: true
 },
 {
   _id: "34",
@@ -496,6 +529,7 @@ export const dummyProducts = [
     "Perfect your workout sessions with these high-waisted leggings, offering flexibility, comfort, and breathability for all activities.",
   category: "Sportswear",
   popular: true,
+  inStock: true
 },
 {
   _id: "35",
@@ -508,6 +542,7 @@ export const dummyProducts = [
     "This lightweight jacket provides optimal coverage and ventilation, perfect for outdoor runs and gym sessions.",
   category: "Sportswear",
   popular: false,
+  inStock: true
 },
 {
   _id: "36",
@@ -520,6 +555,7 @@ export const dummyProducts = [
     "Move freely during training with these comfort fit gym shorts, featuring an adjustable waistband and breathable design.",
   category: "Sportswear",
   popular: false,
+  inStock: true
 },
 {
   _id: "37",
@@ -532,6 +568,7 @@ export const dummyProducts = [
     "Carry all your workout essentials with this spacious sports duffel bag, complete with separate shoe compartment for convenience.",
   category: "Sportswear",
   popular: false,
+  inStock: true
 },
 {
   _id: "38",
@@ -544,6 +581,7 @@ export const dummyProducts = [
     "Stay warm before and after your workout with this soft crewneck sweatshirt, perfect for layering over your gym attire.",
   category: "Sportswear",
   popular: false,
+  inStock: true
 },
 
 ];
