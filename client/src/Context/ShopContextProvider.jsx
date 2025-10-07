@@ -9,7 +9,8 @@ const ShopContextProvider = ({children}) => {
     const [user,setUser] = useState(null);
     const [products,setProducts] = useState([]);
      const [showUserLogin, setShowUserLogin] = useState(false);
-     const [cartItems, setCartItems] = useState({});      
+     const [cartItems, setCartItems] = useState({});     
+      const [isAdmin, setIsAdmin] = useState(false);
     const currency = import.meta.env.VITE_CURRENCY;
     const deliveryCharges = 10 //dollar
      // Fetch all products
@@ -60,6 +61,7 @@ const ShopContextProvider = ({children}) => {
         fetchProducts();
     },[])
      const value = {
+          fetchProducts,
          navigate,
          user,
          setUser,
@@ -74,7 +76,9 @@ const ShopContextProvider = ({children}) => {
          getCartCount,
          getCartAmount,
          updateQuantity,
-         deliveryCharges
+         deliveryCharges,
+         isAdmin,
+         setIsAdmin
      }
   return (
        <shopContext.Provider value={value}>
