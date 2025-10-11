@@ -8,7 +8,7 @@ import {  BiLogOut } from 'react-icons/bi';
 
 const SideBar = () => {
 
-   const {navigate} = useContext(shopContext);
+   const {navigate,setIsAdmin} = useContext(shopContext);
     const navItems = [
        {
         path: '/admin',
@@ -54,7 +54,7 @@ const SideBar = () => {
                    <div className='max-sm:ml-5 sm:mt-40 text-center px-9 '>
                       <button className='flex gap-1 items-center text-red-500 '>
                           <BiLogOut className='text-md sm:text-lg ' />
-                            <div className='hidden sm:flex '>
+                            <div onClick={()=>{navigate('/'); setIsAdmin(false) }} className='hidden sm:flex '>
                                Logout
                             </div>
                       </button>
