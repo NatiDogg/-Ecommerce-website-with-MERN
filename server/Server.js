@@ -3,6 +3,8 @@ import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import connectDB from './config/mongoDb.js';
 import express from "express"
+import userRouter from './routes/userRoute.js';
+import adminRouter from './routes/adminRoute.js';
 
 
 
@@ -24,6 +26,10 @@ app.use(cors({
     credentials: true
 
 }))
+
+//define API routes
+app.use('/api/user',userRouter) 
+app.use('/api/admin',adminRouter) // routes for user-related operations
 
 // root endpoint to check API status
 app.get('/',(req,res)=>{
