@@ -5,6 +5,9 @@ import connectDB from './config/mongoDb.js';
 import express from "express"
 import userRouter from './routes/userRoute.js';
 import adminRouter from './routes/adminRoute.js';
+import connectCloudinary from './config/cloudinary.js';
+import productRouter from './routes/productRoute.js';
+import cartRouter from './routes/cartRoute.js';
 
 
 
@@ -13,6 +16,7 @@ const app = express();
 const port = process.env.PORT || 4000; 
 
 await connectDB() // establish connection to the database
+await connectCloudinary() // set up cloudinary for image storage
 
 // allowed multiple origins
 const allowedOrigins = [" http://localhost:5173"]
@@ -30,6 +34,8 @@ app.use(cors({
 //define API routes
 app.use('/api/user',userRouter) 
 app.use('/api/admin',adminRouter) // routes for user-related operations
+app.use('/api/product',productRouter)
+app.use('/api/cart',cartRouter);
 
 // root endpoint to check API status
 app.get('/',(req,res)=>{

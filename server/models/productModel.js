@@ -7,15 +7,15 @@ const productSchema = new mongoose.Schema(
         price: {type:Number, required: true},
         offerPrice: {type:Number, required: true},
         image: {type:Array, required: true},
-        category: {type:String, requried: true},
-        sizes: {type:Array, requried: true},
+        category: {type:String, required: true},
+        sizes: {type:Array, required: true},
         popular: {type:Boolean},
         inStock: {type:Boolean, default: true}
         
 
          
         
-     },{minimize:false}
+     },{timestamps:true}
 )
 
 const productModel = mongoose.models.product || mongoose.model('product',productSchema);
