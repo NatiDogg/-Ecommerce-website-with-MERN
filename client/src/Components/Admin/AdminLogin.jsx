@@ -1,6 +1,8 @@
 import React,{useContext, useEffect,useState} from 'react'
 import { shopContext } from '../../Context/ShopContextProvider';
 
+import toast from 'react-hot-toast';
+
 const AdminLogin = () => {
      const {isAdmin,setIsAdmin,navigate,axios} = useContext(shopContext);
      const [email, setEmail] = useState("");
@@ -8,12 +10,20 @@ const AdminLogin = () => {
 
      const onSubmitHandler = async (e)=>{
         e.preventDefault();
-        setIsAdmin(true);
 
         try{
-          
+          const {data} = await axios.post('/api/admin/login',{email,password})
+          if(data.success){
+             setIsAdmin(true)
+             navigate('/admin');
+             toast.success(data.message);
+          }
+          else{
+            toast.error(data.message)
+          }
         }
         catch(error){
+           toast.error(error.message)
 
         }
 

@@ -1,13 +1,17 @@
-import React,{useState} from 'react'
+import React,{useState,useContext} from 'react'
 import {toast} from 'react-hot-toast';
 import upload_icon from '../../assets/upload_icon.png';
+import {shopContext} from '../../Context/ShopContextProvider.jsx';
 
 
 const AddProduct = () => {
+    const {axios} = useContext(shopContext);
      const sizes = ["S","M","L","XL","XXL"];
      const [currentSize, setCurrentSize] = useState([]);
      const [addPopular, setAddPopular] = useState(false);
      const [files, setFiles] = useState([]);
+
+
     
 
       
@@ -17,25 +21,53 @@ const AddProduct = () => {
           category:"",
           productPrice: "",
           offerPrice: "",
-          size:[],
-          file: [],
+          sizes:[],
+          files: [],
         addPopular: false
          
      });
+
+
+
+    
+
     
      const handleForm = async(e) =>{
         e.preventDefault();
-        const emptyForm = Object.values(newProductForm).some(value=> value === "");
-       
-        
-        
-        if(emptyForm || currentSize.length < 0 ){
-             
-                return toast.error("please fill all the required inputs");
-        }
-        else{
+      const { name, description, category, productPrice, offerPrice } = newProductForm;
+     if (!name || !description || !category || !productPrice || !offerPrice) {
+       return toast.error("Please fill all required fields");
+      }
+     if (currentSize.length === 0) {
+      return toast.error("Please select at least one size");
+      }
+     if (files.length === 0) {
+       return toast.error("Please upload at least one image");
+     }
+              
+         try {
+            const {  files,productPrice,addPopular, ...rest } = newProductForm;
+            const cleanProductData = {
+               ...rest, 
+               price:Number(productPrice),
+               popular:addPopular
+            };
+            const formData = new FormData();
+             formData.append('productData', JSON.stringify(cleanProductData));
+             files.forEach((file) => {
+               formData.append('images', file);
+               });
+               const {data} = await axios.post('/api/product/add',formData)
            
-           console.log(newProductForm);
+            if(data.success){
+               toast.success(data.message);
+            }
+            else{
+               toast.error(data.message);
+            }
+         } catch (error) {
+             console.log(error.message);
+         } 
            setNewProductForm({
               name: "",
               description: "",
@@ -46,10 +78,10 @@ const AddProduct = () => {
               file: [],
               addPopular: false
            })
-         setCurrentSize("");
+         setCurrentSize([]);
            setAddPopular(false); 
-            
-        }
+           setFiles([]);
+         
         
      }
      const handleInput = (e)=>{
@@ -102,7 +134,7 @@ const AddProduct = () => {
                       <input onChange={(e)=>handleInput(e)} name="productPrice" value={newProductForm.productPrice}  type="number" id='productPrice'  className='px-2 py-1 border border-gray-200 rounded-md outline-none focus:border-gray-400 w-[50%] ' />
                   </div>
                    <div className='flex flex-col gap-1 '>
-                     <label htmlFor="productPrice" className='font-semibold'>Product Price</label>
+                     <label htmlFor="productPrice" className='font-semibold'>Offer Price</label>
                       <input onChange={(e)=>handleInput(e)} name="offerPrice" value={newProductForm.offerPrice} type="number" id='productPrice'  className='px-2 py-1 border border-gray-200 rounded-md outline-none focus:border-gray-400 w-[50%]' />
                   </div>
                   
@@ -124,7 +156,7 @@ const AddProduct = () => {
                        <div className='flex flex-row flex-wrap items-center gap-4'>
                             {Array(4).fill("").map((_,index)=>(
                                  <label key={index} htmlFor={`image${index}`} className='rounded overflow-hidden cursor-pointer'>
-                                     <input name='file' value={newProductForm.file} onChange={(e)=>{
+                                     <input  onChange={(e)=>{
                                          setNewProductForm(prevData=>{
                                                 const updatedFiles = [...files]
                                          updatedFiles[index] = e.target.files[0]

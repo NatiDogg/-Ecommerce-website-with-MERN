@@ -8,6 +8,7 @@ import adminRouter from './routes/adminRoute.js';
 import connectCloudinary from './config/cloudinary.js';
 import productRouter from './routes/productRoute.js';
 import cartRouter from './routes/cartRoute.js';
+import orderRouter from './routes/orderRoute.js';
 
 
 
@@ -19,7 +20,7 @@ await connectDB() // establish connection to the database
 await connectCloudinary() // set up cloudinary for image storage
 
 // allowed multiple origins
-const allowedOrigins = [" http://localhost:5173"]
+const allowedOrigins = ["http://localhost:5173"]
 
 // middleware setup
 
@@ -36,6 +37,8 @@ app.use('/api/user',userRouter)
 app.use('/api/admin',adminRouter) // routes for user-related operations
 app.use('/api/product',productRouter)
 app.use('/api/cart',cartRouter);
+app.use('/api/order',orderRouter);
+
 
 // root endpoint to check API status
 app.get('/',(req,res)=>{

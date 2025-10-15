@@ -2,6 +2,10 @@ import React, { createContext,useEffect,useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { dummyProducts } from '../Data/data.js';
 import toast from 'react-hot-toast';
+import axios from 'axios'
+
+axios.defaults.withCredentials = true;
+axios.defaults.baseURL = import.meta.env.VITE_BACKEND_URL;
 export const shopContext = createContext();
 const ShopContextProvider = ({children}) => {
 
@@ -17,6 +21,18 @@ const ShopContextProvider = ({children}) => {
     const fetchProducts = async ()=>{
            setProducts(dummyProducts);
     }
+
+     //fetch admin
+
+     const fetchAdmin = async ()=>{
+          try {
+             const {data}   = await axios.get('/api/admin/is-auth')
+             setIsAdmin(data.success)
+          } catch (error) {
+                setIsAdmin(false)
+          }
+     }
+
      //add product to the cart
       const addToCart = async (itemId,size)=>{
            if(!size){
@@ -59,6 +75,7 @@ const ShopContextProvider = ({children}) => {
 
     useEffect(()=>{
         fetchProducts();
+        fetchAdmin()
     },[])
      const value = {
           fetchProducts,
@@ -78,7 +95,8 @@ const ShopContextProvider = ({children}) => {
          updateQuantity,
          deliveryCharges,
          isAdmin,
-         setIsAdmin
+         setIsAdmin,
+         axios
      }
   return (
        <shopContext.Provider value={value}>
