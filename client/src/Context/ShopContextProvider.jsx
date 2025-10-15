@@ -1,6 +1,6 @@
 import React, { createContext,useEffect,useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { dummyProducts } from '../Data/data.js';
+
 import toast from 'react-hot-toast';
 import axios from 'axios'
 
@@ -19,7 +19,17 @@ const ShopContextProvider = ({children}) => {
     const deliveryCharges = 10 //dollar
      // Fetch all products
     const fetchProducts = async ()=>{
-           setProducts(dummyProducts);
+           try {
+               const {data} = await axios.get('/api/product/list');
+               if(data.success){
+                    setProducts(data.products)
+               }
+               else{
+                    toast.error(data.message)
+               }
+           } catch (error) {
+                toast.error(error.message)
+           }
     }
 
      //fetch admin

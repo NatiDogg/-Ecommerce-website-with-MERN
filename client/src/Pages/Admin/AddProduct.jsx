@@ -123,7 +123,7 @@ const AddProduct = () => {
                      <select value={newProductForm.category} onChange={(e) => handleInput(e)} className='px-4  py-1 border border-gray-200 rounded-md outline-none focus:border-gray-400 text-gray-600 grid place-content-center ' name="category" id="category">
                         <option value="" disabled hidden >Select a category</option>
                         <option  value="Men">Men</option>
-                        <option  value="Female">Female</option>
+                        <option  value="Women">Women</option>
                         <option   value="Kids">Kids</option>
                         <option   value="Footwear">Footwear</option>
                         <option   value="Winterwear">Winterwear</option>

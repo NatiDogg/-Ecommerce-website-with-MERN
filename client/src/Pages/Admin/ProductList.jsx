@@ -1,10 +1,25 @@
 import React,{useContext,useState} from 'react'
 
 import { shopContext } from '../../Context/ShopContextProvider.jsx'
+import toast from 'react-hot-toast';
 
 const ProductList = () => {
-       const {products,currency,fetchProducts}  = useContext(shopContext);
-        const [inStock, setInStock] = useState(true);
+       const {products,currency,fetchProducts,axios}  = useContext(shopContext);
+        
+        const toggleStock = async (productId,inStock)=>{
+              try {
+                const {data} = await axios.post('/api/product/stock',{productId,inStock})
+                if(data.success){
+                   fetchProducts()
+                   toast.success(data.message)
+                }
+                else{
+                   toast.error(data.message)
+                }
+              } catch (error) {
+                 toast.error(error.message);
+              }
+        }
   return (
        <section className='px-0 py-2 md:px-6 md:py-6 w-full bg-gray-100'>
             <div className='max-w-[1360px] mx-auto px-4 py-4 flex flex-col gap-6'>
@@ -32,7 +47,7 @@ const ProductList = () => {
                                        <p className='text-gray-600 font-semibold text-sm md:text-[16px]'>{currency}{product.offerPrice}</p>
                                         <div>
                                            <label className='relative inline-flex items-center cursor-pointer text-gray-900 gap-3' >
-                                              <input type="checkbox" className='sr-only peer' defaultChecked = {product.inStock} />
+                                              <input onClick={()=>toggleStock(product._id,!product.inStock)} type="checkbox" className='sr-only peer' defaultChecked = {product.inStock} />
                                               <div className='w-10 h-6 bg-slate-500 rounded-full peer peer-checked:bg-gray-900 transition-colors duration-200' />
                                                <span className='absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-transform duration-200 ease-in-out peer-checked:translate-x-4' />
                                            </label>

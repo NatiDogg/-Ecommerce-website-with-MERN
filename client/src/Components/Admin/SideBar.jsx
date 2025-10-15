@@ -1,16 +1,19 @@
-import React,{useContext} from 'react'
+import React,{useContext,useEffect} from 'react'
 import { shopContext } from '../../Context/ShopContextProvider'
 import { FaSquarePlus } from 'react-icons/fa6';
 import { FaListAlt } from 'react-icons/fa';
-import { MdFactCheck } from 'react-icons/md';
+import { MdFactCheck,MdArrowUpward } from 'react-icons/md';
 import { Link, NavLink, Outlet } from 'react-router-dom';
 import {  BiLogOut } from 'react-icons/bi';
 import toast from 'react-hot-toast';
+import { useState } from 'react';
 
 
 const SideBar = () => {
 
    const {navigate,setIsAdmin,axios} = useContext(shopContext);
+  
+   const [backToTop,setBackToTop] = useState(false);
     const navItems = [
        {
         path: '/admin',
@@ -49,10 +52,29 @@ const SideBar = () => {
            toast.error(error.message)
        }
     }
+         
+
+        useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 200) {
+        setBackToTop(true);
+      } else {
+        setBackToTop(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
   return (
-      <div className=' max-w-[1440px] flex flex-col sm:flex-row'>
+      <div className=' relative  max-w-[1440px] flex flex-col sm:flex-row'>
+              {backToTop && <a href="#top" className='fixed bottom-12 left-2 md:left-32 ' >
+                          <div className='bg-slate-900 px-1 py-1 md:px-3 md:py-2 rounded-full shadow-lg flex items-center justify-center animate-pulse hover:scale-110 transition-transform duration-300 '>
+                            <MdArrowUpward className='' size={35} color="white" />
+                          </div>
+              </a>}
          {/*sidebar*/}
-         <div className='max-sm:flex items-center  justify-center bg-gray-200 pb-3  sm:min-w-[20%] sm:min-h-[100vh] rounded-xl'>
+         <div id='#top' className=' max-sm:flex items-center  justify-center bg-gray-200 pb-3  sm:min-w-[20%] sm:min-h-[100vh] rounded-xl'>
             <div className='flex  flex-col gap-y-6 max-sm:items-center text-center sm:flex-col pt-4 sm:pt-14'>
                {/*logo*/}
                 <Link to={'/admin'} className='font-paci uppercase text-xl font-semibold' >
