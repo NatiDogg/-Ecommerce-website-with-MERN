@@ -61,14 +61,7 @@ const AddProduct = () => {
            
             if(data.success){
                toast.success(data.message);
-            }
-            else{
-               toast.error(data.message);
-            }
-         } catch (error) {
-             console.log(error.message);
-         } 
-           setNewProductForm({
+               setNewProductForm({
               name: "",
               description: "",
               category:"",
@@ -81,6 +74,14 @@ const AddProduct = () => {
          setCurrentSize([]);
            setAddPopular(false); 
            setFiles([]);
+            }
+            else{
+               toast.error(data.message);
+            }
+         } catch (error) {
+             console.log(error.message);
+         } 
+           
          
         
      }
@@ -131,11 +132,11 @@ const AddProduct = () => {
                   </div>
                   <div className='flex flex-col gap-1 items-start sm:items-center  '>
                      <label htmlFor="productPrice" className='font-semibold'>Product Price</label>
-                      <input onChange={(e)=>handleInput(e)} name="productPrice" value={newProductForm.productPrice}  type="number" id='productPrice'  className='px-2 py-1 border border-gray-200 rounded-md outline-none focus:border-gray-400 w-[50%] ' />
+                      <input onChange={(e)=>handleInput(e)} min={10} name="productPrice" value={newProductForm.productPrice}  type="number" id='productPrice'  className='px-2 py-1 border border-gray-200 rounded-md outline-none focus:border-gray-400 w-[50%] ' />
                   </div>
                    <div className='flex flex-col gap-1 '>
                      <label htmlFor="productPrice" className='font-semibold'>Offer Price</label>
-                      <input onChange={(e)=>handleInput(e)} name="offerPrice" value={newProductForm.offerPrice} type="number" id='productPrice'  className='px-2 py-1 border border-gray-200 rounded-md outline-none focus:border-gray-400 w-[50%]' />
+                      <input onChange={(e)=>handleInput(e)} min={10} name="offerPrice" value={newProductForm.offerPrice} type="number" id='productPrice'  className='px-2 py-1 border border-gray-200 rounded-md outline-none focus:border-gray-400 w-[50%]' />
                   </div>
                   
                  
