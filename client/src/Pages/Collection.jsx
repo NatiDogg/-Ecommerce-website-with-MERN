@@ -10,9 +10,9 @@ const Collection = () => {
        const itemsPerPage = 10;
 
        useEffect(() => {
-         // This effect runs when the 'products' from the context changes
+        
           setfilteredProducts(products);
-         // Reset to the first page whenever the filter changes
+         
           setCurrentPage(1);
        }, [products]);
       const indexOfLastItem = currentPage * itemsPerPage;

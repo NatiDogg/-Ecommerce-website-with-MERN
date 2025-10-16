@@ -1,8 +1,10 @@
 import React,{useContext,useState} from 'react'
 import { shopContext } from '../Context/ShopContextProvider';
 import { MdClose } from 'react-icons/md';
+import toast from 'react-hot-toast';
+
 const Login = () => {
-     const {setShowUserLogin,navigate} = useContext(shopContext);
+     const {setShowUserLogin,navigate,axios,fetchUser} = useContext(shopContext);
      const [state, setState] = useState("login");
       const [formData, setFormData] = useState({
           name : "",
@@ -24,25 +26,37 @@ const Login = () => {
        ))
        
    }
-     const onSumbitHandler =  (e)=>{
+     const onSumbitHandler = async  (e)=>{
            e.preventDefault();
 
            try{
-            console.log(formData);
-              setFormData({
+              const {name,email,password} = formData;
+             const {data} =  await axios.post(`/api/user/${state}`,{name,email,password});
+              if(data.success){
+                  toast.success(`${state === 'register' ? 'Account Created Sucessfully': 'Login Sucessfully'}`)
+                  await fetchUser();
+                  navigate('/')
+                setFormData({ 
                    name : "",
                    email : "",
                    password : ""
               })
               setShowUserLogin(false);
+                  
+              }
+              else{
+                 toast.error(data.message);
+                  
+              }
+              
            }
            catch(error){
-              console.log(error.message());
+              toast.error(error.message);
            }
      }
   return (
       <section data-testid = "login-page" className='fixed inset-0 z-40 flex items-center justify-center text-sm text-gray-600 bg-black/40 '>
-          <form action="" onSubmit={onSumbitHandler} className='bg-white relative rounded-lg shadow-md px-4 py-6 w-[80%] md:w-[40%] lg:w-[30%]  flex flex-col justify-start items-center gap-6'>
+          <form  onSubmit={onSumbitHandler} className='bg-white relative rounded-lg shadow-md px-4 py-6 w-[80%] md:w-[40%] lg:w-[30%]  flex flex-col justify-start items-center gap-6'>
                 <h1 className='text-3xl text-gray-600 font-bold '>User <span className='text-gray-900'>{state === "login" ? "Login" : "Register"}</span></h1>
                  {state === "register" ?
                      <div className='flex flex-col gap-4'>
@@ -56,7 +70,7 @@ const Login = () => {
                       </div>
                       <div className='flex flex-col gap-1 w-full'>
                         <label htmlFor="Password" className='text-gray-600'>Password:</label>
-                        <input required  onChange={(e)=>handleInput(e)} value={formData.password} name='password' type="password" id='Password' placeholder='your email..' className='px-4 py-2 w-full text-black border border-gray-400 rounded-sm' />
+                        <input required  onChange={(e)=>handleInput(e)} value={formData.password} name='password' type="password" id='Password' placeholder='*********' className='px-4 py-2 w-full text-black border border-gray-400 rounded-sm' />
                       </div>
                        <div className='flex flex-row gap-1 items-center'>
                          <p className='text-gray-700 text-sm'>Already have an Account?</p>
@@ -73,7 +87,7 @@ const Login = () => {
                     </div>
                      <div className='flex flex-col gap-1 w-full'>
                        <label htmlFor="Password" className='text-gray-600'>Password:</label>
-                       <input required  onChange={(e)=>handleInput(e)} value={formData.password} name='password' type="password" id='Password' placeholder='your email..' className='px-4 py-2 w-full text-black border border-gray-400 rounded-sm' />
+                       <input required  onChange={(e)=>handleInput(e)} value={formData.password} name='password' type="password" id='Password' placeholder='*********' className='px-4 py-2 w-full text-black border border-gray-400 rounded-sm' />
                     </div>
                      <div className='flex flex-row gap-1 items-center'>
                        <p className='text-gray-700 text-sm'>Create an Account?</p>

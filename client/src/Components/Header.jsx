@@ -6,10 +6,10 @@ import {FaBars,FaBarsStaggered} from 'react-icons/fa6'
 import userImg from '../assets/user.png';
 import {RiUserLine} from 'react-icons/ri'
 import {shopContext} from '../Context/ShopContextProvider.jsx';
-import { dummyProducts } from '../Data/data.js';
+
 
 const Header = () => {
-      const {user,setUser,navigate,setProducts,setShowUserLogin,getCartCount} = useContext(shopContext);
+      const {user,setUser,navigate,setProducts,setShowUserLogin,getCartCount,handleUserLogOut,products,fetchProducts} = useContext(shopContext);
     const [menuOpened,setMenuOpened] = useState(false);
     const [showSearch,setShowSearch] = useState(false);
     const location = useLocation();
@@ -18,12 +18,15 @@ const Header = () => {
      const onCollectionPage = location.pathname  === "/collection";
      const [value, setValue] = useState("");
      const items = getCartCount();
+     
       
      useEffect(()=>{
         if (location.pathname !== "/collection") {
-            setProducts(dummyProducts);
+            fetchProducts()
         }
-     },[location.pathname,setProducts])
+     },[location.pathname])
+
+     
  
     const toggleMenu = ()=>{
         setMenuOpened(prevMenu=> !prevMenu);
@@ -34,7 +37,7 @@ const Header = () => {
       if ( !onCollectionPage && lowerCaseInput !== "") {
         navigate("/collection");
       }
-       const newFilteredProducts = dummyProducts.filter(product => {
+       const newFilteredProducts = products.filter(product => {
         const lowerCaseProductName = product.name.toLowerCase();
         return lowerCaseProductName.includes(lowerCaseInput);
       });
@@ -96,7 +99,7 @@ const Header = () => {
                                         <img src={userImg} alt="user image" height={45} width={45} />
                                         <ul className='  absolute text-sm top-5 -left-2 bg-white z-50 shadow-lg w-[90px] py-4 px-2 rounded-lg hidden group-hover:flex flex-col gap-2 ' >
                                            <li className=' text-gray-800 rounded-md hover:text-black cursor-pointer'>orders</li>
-                                          <li className=' text-gray-800 rounded-md hover:text-black cursor-pointer'>Log out</li>
+                                          <li onClick={handleUserLogOut} className=' text-gray-800 rounded-md hover:text-black cursor-pointer'>Log out</li>
                                         </ul>
                                    </div> :   
                                      <button onClick={()=>setShowUserLogin(true)} className='flex items-center gap-1 btn-dark  rounded-full'>

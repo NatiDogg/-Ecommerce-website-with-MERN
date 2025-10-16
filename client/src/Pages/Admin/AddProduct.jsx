@@ -95,16 +95,17 @@ const AddProduct = () => {
              }
          ))
      }
-     const handleSizeChange = (e,size)=>{
-         e.preventDefault();
-         setNewProductForm(prevData=>(
-            {
-                ...prevData,
-                size:[...currentSize,size]
-            }
-         ));
-         setCurrentSize(prevSize=> [...prevSize,size]);
-     }
+      const handleSizeChange = (e, size) => {
+               e.preventDefault();
+           const updatedSizes = currentSize.includes(size)
+                  ? currentSize.filter(s => s !== size) // toggle off if already selected
+                  : [...currentSize, size];
+            setCurrentSize(updatedSizes);
+          setNewProductForm(prevData => ({
+            ...prevData,
+           sizes: updatedSizes   // ✅ correct field name
+        }));
+};
       
   return (
    <div className='ml-2  px-4 py-4 bg-slate-100/40 w-full'>

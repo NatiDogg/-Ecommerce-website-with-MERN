@@ -55,21 +55,21 @@ const SideBar = () => {
          
 
         useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 200) {
-        setBackToTop(true);
-      } else {
-        setBackToTop(false);
-      }
-    };
+          const handleScroll = () => {
+          if (window.scrollY > 300) {
+            setBackToTop(true);
+         } else {
+          setBackToTop(false);
+         }
+       };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+      window.addEventListener('scroll', handleScroll);
+       return () => window.removeEventListener('scroll', handleScroll);
+      }, []);
   return (
       <div className=' relative  max-w-[1440px] flex flex-col sm:flex-row'>
               {backToTop && <a href="#top" className='fixed bottom-12 left-2 md:left-32 ' >
-                          <div className='bg-slate-900 px-1 py-1 md:px-3 md:py-2 rounded-full shadow-lg flex items-center justify-center animate-pulse hover:scale-110 transition-transform duration-300 '>
+                          <div className='bg-slate-900 px-1 py-1 md:px-2 md:py-2 rounded-full shadow-lg flex items-center justify-center animate-pulse hover:scale-110 transition-transform duration-300 '>
                             <MdArrowUpward className='' size={35} color="white" />
                           </div>
               </a>}

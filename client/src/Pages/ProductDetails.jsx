@@ -17,7 +17,7 @@ const ProductDetails = () => {
       const { category, id} = useParams();
       const [relatedProducts, setRelatedProducts] = useState([]);
       const [productInfo, setProductInfo] = useState("description");
-
+     
       const product = products.find((item)=> item._id === id);
       const ProductDescriptionButtons = ['Description','Care Guide','Color Guide']
         

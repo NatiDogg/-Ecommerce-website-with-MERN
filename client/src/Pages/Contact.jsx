@@ -47,7 +47,7 @@ const Contact = () => {
                              <input type="email" name='email' placeholder='Enter your email' className='bg-white border border-slate-300 rounded-md focus:outline-slate-400  px-4 py-1.5 text-black w-full ' onChange={(e)=> handleInput(e)} value={formData.email} />
                          </div>
                          <div className='mt-6'>
-                            <textarea name="message" placeholder='write your message here..' id="textArea" cols={66} rows={4} className='bg-white border border-slate-400/70 rounded-md focus:outline-slate-400 px-4 py-2 text-black w-full ' value={formData.message} onChange={(e)=> handleInput(e)} ></textarea>
+                            <textarea name="message" placeholder='write your message here..' id="textArea" cols={66} rows={4} className='bg-white border border-slate-400/70 rounded-md focus:outline-slate-400 px-4 py-2 resize-none text-black w-full ' value={formData.message} onChange={(e)=> handleInput(e)} ></textarea>
                          </div>
                          <button type='submit' className='mt-4 bg-black rounded-md px-4 py-3 md:px-6 md:py-3 text-white font-light  hover:bg-slate-950'>Send Message</button>
                    </form>

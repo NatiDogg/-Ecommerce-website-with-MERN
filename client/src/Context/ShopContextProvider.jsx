@@ -32,6 +32,44 @@ const ShopContextProvider = ({children}) => {
            }
     }
 
+    // check whether the user is logged in or not
+
+    const fetchUser = async()=>{
+        try {
+           const {data} = await axios.get('/api/user/is-auth')
+           if(data.success){
+               setUser(data.user);
+               setCartItems(data.user.cartData);
+               
+           }
+           else{
+               setUser(null)
+               setCartItems({})
+           }
+        } catch (error) {
+            setUser(null);
+            setCartItems({});
+        }
+    }
+     
+        const handleUserLogOut = async ()=>{
+           try {
+               const {data} = await axios.post('/api/user/logout');
+               if(data.success){
+                    toast.success(data.message)
+                    setUser(null);
+                    setCartItems({});
+                    navigate('/');
+
+               }
+               else{
+                    toast.error(data.message);
+               }
+           } catch (error) {
+               toast.error(error.message);
+           }
+        }
+
      //fetch admin
 
      const fetchAdmin = async ()=>{
@@ -42,6 +80,8 @@ const ShopContextProvider = ({children}) => {
                 setIsAdmin(false)
           }
      }
+
+
 
      //add product to the cart
       const addToCart = async (itemId,size)=>{
@@ -86,6 +126,8 @@ const ShopContextProvider = ({children}) => {
     useEffect(()=>{
         fetchProducts();
         fetchAdmin()
+        fetchUser();
+        
     },[])
      const value = {
           fetchProducts,
@@ -106,7 +148,9 @@ const ShopContextProvider = ({children}) => {
          deliveryCharges,
          isAdmin,
          setIsAdmin,
-         axios
+         axios,
+         fetchUser,
+         handleUserLogOut,
      }
   return (
        <shopContext.Provider value={value}>
