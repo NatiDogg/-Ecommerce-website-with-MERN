@@ -24,7 +24,7 @@ export const placeOrderCOD = async (req,res)=>{
              items,
              amount: totalAmount,
              address,
-             PaymentMethod: "COD"
+             paymentMethod: "COD"
         });
         await userModel.findByIdAndUpdate(userId, {cartData: {}})
         return res.json({success: true, message: "Order Placed"})
@@ -34,7 +34,7 @@ export const placeOrderCOD = async (req,res)=>{
     }
 }
 
-export const placeOrderStripe = async (req,res)=>{
+export const placeOrderChapa = async (req,res)=>{
           try {
             
           } catch (error) {
@@ -47,7 +47,7 @@ export const placeOrderStripe = async (req,res)=>{
 export const userOrders = async(req,res)=>{
     try {
         const userId = req.userId
-        const orders = await orderModel.find({userId,$or:[{PaymentMethod: "COD"},{isPaid: true}]}).populate("items.product").sort({createdAt: -1})
+        const orders = await orderModel.find({userId,$or:[{paymentMethod: "COD"},{isPaid: true}]}).populate("items.product").sort({createdAt: -1})
         res.json({success: true, orders})
     } catch (error) {
         console.log(error);
@@ -57,7 +57,7 @@ export const userOrders = async(req,res)=>{
 //all orders data for admin panel = api/order/list
 export const allOrders = async(req,res)=>{
      try {
-         const orders = await orderModel.find({$or:[{PaymentMethod: "COD"},{isPaid: true}]}).populate("items.product").sort({createdAt: -1})
+         const orders = await orderModel.find({$or:[{paymentMethod: "COD"},{isPaid: true}]}).populate("items.product").sort({createdAt: -1})
            res.json({success: true, orders})
 
      } catch (error) {

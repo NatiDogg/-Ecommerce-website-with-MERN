@@ -98,7 +98,7 @@ const Header = () => {
                                    {user ? <div className='cursor-pointer group relative'>
                                         <img src={userImg} alt="user image" height={45} width={45} />
                                         <ul className='  absolute text-sm top-5 -left-2 bg-white z-50 shadow-lg w-[90px] py-4 px-2 rounded-lg hidden group-hover:flex flex-col gap-2 ' >
-                                           <li className=' text-gray-800 rounded-md hover:text-black cursor-pointer'>orders</li>
+                                           <li onClick={()=> navigate('/my-orders')} className=' text-gray-800 rounded-md hover:text-black cursor-pointer'>orders</li>
                                           <li onClick={handleUserLogOut} className=' text-gray-800 rounded-md hover:text-black cursor-pointer'>Log out</li>
                                         </ul>
                                    </div> :   

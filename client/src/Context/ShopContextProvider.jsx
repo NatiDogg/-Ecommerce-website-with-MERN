@@ -83,6 +83,8 @@ const ShopContextProvider = ({children}) => {
 
 
 
+
+
      //add product to the cart
       const addToCart = async (itemId,size)=>{
            if(!size){
@@ -92,7 +94,23 @@ const ShopContextProvider = ({children}) => {
            cartData[itemId] = cartData[itemId] || {}
            cartData[itemId][size] = (cartData[itemId][size] || 0) + 1
            setCartItems(cartData);
-           toast.success("item added sucessfully");
+            if(user){
+               try{
+                    const {data} = await axios.post('/api/cart/add',{itemId,size})
+                    if(data.success){
+                         toast.success(data.message);
+                    }
+                    else{
+                         toast.error(data.message)
+                    }
+               }
+               catch(error){
+                 toast.error(error.message);
+               }
+            }
+            else{
+               toast.error("please login to order the product");
+            }
       }
 
       //count of the cart items
@@ -110,6 +128,19 @@ const ShopContextProvider = ({children}) => {
            let cartData = structuredClone(cartItems);
            cartData[itemId][size] = quantity;
            setCartItems(cartData)
+           if(user){
+               try {
+                    const {data} = await axios.post('/api/cart/update',{itemId,size,quantity})
+                    if(data.success){
+                         toast.success(data.message);
+                    }
+                    else{
+                         toast.error(data.message)
+                    }
+               } catch (error) {
+                     toast.error(error.message);
+               }
+           }
       }
       const getCartAmount = ()=>{
            let total = 0;

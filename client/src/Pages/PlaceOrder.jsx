@@ -5,7 +5,7 @@ import { useLocation } from 'react-router-dom';
 import toast from 'react-hot-toast';
 const PlaceOrder = () => {
       const [method,setMethod] = useState("COD");
-      const {navigate,cartItems,setCartItems,products,setShowUserLogin} = useContext(shopContext);
+      const {navigate,cartItems,setCartItems,products,axios} = useContext(shopContext);
       
       const [formData,setFormData] = useState({
          fname : "",
@@ -29,11 +29,46 @@ const PlaceOrder = () => {
        ))
       }
       
-      const getData = ()=>{
+      const getData = async ()=>{
         const allFieldsEmpty = Object.values(formData).some(value => value === '');
           if(allFieldsEmpty){
              return toast.error("please fill all the form fields!!");
           }
+           try {
+            let orderItems = []
+            for(const itemId in cartItems){
+               for(const size in cartItems[itemId]){
+                    if(cartItems[itemId][size] > 0){
+                       const itemInfo = structuredClone(products.find((product)=>product._id === itemId));
+                       if(itemInfo){
+                        itemInfo.size = size;
+                        itemInfo.quantity = cartItems[itemId][size]
+                        orderItems.push(itemInfo);
+                       }
+                    } 
+               }
+            }
+              let items = orderItems.map((item)=>({
+                 product: item._id,
+                 quantity: item.quantity,
+                 size: item.size
+              }))
+              if(method === "COD"){
+                     // place order using COD(cash on delivery)
+                     const {data} = await axios.post('/api/order/cod',{items,address: formData})
+
+                     if(data.success){
+                      toast.success(data.message);
+                      setCartItems({})
+                      navigate('/my-orders')
+                     }
+                     else{
+                      toast.error(data.message)
+                     }
+              }
+           } catch (error) {
+              toast.error(error.message)
+           }
          
          setFormData({
            fname : "",
@@ -46,7 +81,7 @@ const PlaceOrder = () => {
          zipcode : "",
          country : ""
          })
-         setShowUserLogin(true);
+         
       }
       
   return (
@@ -59,8 +94,8 @@ const PlaceOrder = () => {
                   </div>
                    <p className='text-gray-600 text-xs'>Explore our collection of stylish clothing and footwear made for comfort,quality and everday confidence.</p>
                 </div>
-                <div className='px-2 py-2 grid grid-cols-1 md:grid-cols-2 gap-6'>
-                   <div className='w-full px-2 py-1 '>
+                <div className='md:px-2 md:py-2 grid grid-cols-1 md:grid-cols-2 gap-6'>
+                   <div className='w-full md:px-2 md:py-1 '>
                        <form  className='w-full flex flex-col gap-4' action="">
                             <div className='flex flex-row w-full gap-4'>
                               <input required onChange={(e)=>onChangeHandler(e)} value={formData.fname} name='fname' type="text" placeholder='First Name' className='w-full py-2 px-2 rounded-sm text-sm outline-none focus:outline-gray-300' />

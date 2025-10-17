@@ -1,22 +1,34 @@
 import React, { useContext, useEffect,useState } from 'react'
 import { shopContext } from '../Context/ShopContextProvider';
-import { dummyOrders } from '../Data/data';
+
+
 
 const MyOrders = () => {
-   const {currency,user} = useContext(shopContext);
+   const {currency,user,axios} = useContext(shopContext);
    const [orders, setOrders] = useState([]);
 
    const loadOrderData = async ()=>{
-       setOrders(dummyOrders);
+       if(!user) return;
+       try {
+         const { data } = await axios.post('/api/order/userorders', {}, { withCredentials: true });
+         if(data.success){
+             setOrders(data.orders);
+             console.log("it worked");
+         }
+       } catch (error) {
+          console.log(error);
+       }
    }
    
 
-   useEffect(()=>{
-       loadOrderData();
-   },[]);
-   useEffect(()=>{
-        console.log(orders);
-   },[orders])
+  useEffect(() => {
+  if (user) {
+    loadOrderData();
+  }
+}, [user]);
+useEffect(()=>{
+   console.log(orders)
+},[orders])
    
     
   return (
@@ -63,18 +75,18 @@ const MyOrders = () => {
                                  </div>
                                  <div className='flex flex-row gap-4'>
                                     <p className='text-gray-800 font-semibold text-xs sm:text-sm'>Date: <span className='text-xs text-gray-500'>{new Date(order.createdAt).toDateString()}</span></p>
-                                     <p className='text-gray-800 font-semibold text-xs sm:text-sm'>Amount: <span className='text-xs text-gray-500'>{currency}{order.amount}</span></p>
+                                     <p className='text-gray-800 font-semibold text-xs sm:text-sm'>Amount: <span className='text-xs text-gray-500'>{currency}{Number(order.amount).toFixed(2)}</span></p>
                                  </div>
                                  
                               </div>
                               <div className='flex flex-row gap-2 items-center'>
                                  <p className='text-sm text-gray-800 font-semibold '>Status:</p>
                                    <div className='flex flex-row gap-1 items-center'>
-                                      <span className='min-w-2 h-2 rounded-full bg-green-500'></span>
-                                      <p className='text-gray-400 text-sm'>{order.status}</p>
+                                      <span className={`${order.status === "Out for delivery" ? 'bg-red-500': 'bg-green-500'} min-w-2 h-2 rounded-full `}></span>
+                                      <p className='text-gray-400 text-sm'>{order.status.toLowerCase()}</p>
                                    </div>
                                   
-                                   <button onClick={()=>{}} className='bg-gray-500 text-white text-xs px-4 py-1'>Track Order</button>
+                                   <button onClick={loadOrderData} className='bg-gray-500 text-white text-xs px-4 py-1 hover:bg-slate-700 hover:text-white'>Track Order</button>
 
                               </div>
 
