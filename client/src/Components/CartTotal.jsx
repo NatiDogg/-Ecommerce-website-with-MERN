@@ -20,8 +20,8 @@ const CartTotal = ({method,setMethod}) => {
                           <div onClick={()=> setMethod('COD')} className={`${method === "COD" ? 'bg-gray-900 text-white ': 'bg-gray-300 text-black'} py-2 px-4 rounded-md text-xs cursor-pointer `} >
                              Cash on Delivery
                           </div>
-                          <div onClick={()=> setMethod('Chapa')} className={`${method === "Chapa" ? 'bg-gray-900 text-white ': 'bg-gray-300 text-black'} py-2 px-4 rounded-md  text-xs cursor-pointer `} >
-                             Chapa
+                          <div onClick={()=> setMethod('Stripe')} className={`${method === "Stripe" ? 'bg-gray-900 text-white ': 'bg-gray-300 text-black'} py-2 px-4 rounded-md  text-xs cursor-pointer `} >
+                             Stripe
                           </div>
                       </div>
                   </div>

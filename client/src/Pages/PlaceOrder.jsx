@@ -66,6 +66,15 @@ const PlaceOrder = () => {
                       toast.error(data.message)
                      }
               }
+              else{
+                   const {data} = await axios.post("/api/order/stripe",{items,address: formData});
+                   if(data.success){
+                    window.location.replace(data.url)
+                   }
+                   else{
+                     toast.error(data.message);
+                   }
+              }
            } catch (error) {
               toast.error(error.message)
            }

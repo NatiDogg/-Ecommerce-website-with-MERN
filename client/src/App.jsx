@@ -19,6 +19,7 @@ import AdminLogin from './Components/Admin/AdminLogin.jsx';
 import AddProduct from './Pages/Admin/AddProduct.jsx';
 import ProductList from './Pages/Admin/ProductList.jsx';
 import Orders from './Pages/Admin/Orders.jsx';
+import Loading from './Pages/Loading.jsx';
 
 function App() {
    const {showUserLogin,isAdmin} = useContext(shopContext); 
@@ -48,6 +49,7 @@ function App() {
                   <Route path='/cart' element={<Cart />} />
                   <Route path='/place-order' element={<PlaceOrder />} />
                   <Route path='/my-orders' element={<MyOrders />} />
+                  <Route path='/loader' element={<Loading />} />
                    <Route path='/admin' element={isAdmin ? <SideBar /> : <AdminLogin />}  >
                            <Route index element={isAdmin ? <AddProduct /> : null} />
                            <Route path='list' element={<ProductList />} />

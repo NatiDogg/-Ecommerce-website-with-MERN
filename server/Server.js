@@ -9,6 +9,7 @@ import connectCloudinary from './config/cloudinary.js';
 import productRouter from './routes/productRoute.js';
 import cartRouter from './routes/cartRoute.js';
 import orderRouter from './routes/orderRoute.js';
+import { stripeWebhooks } from './controllers/orderController.js';
 
 
 
@@ -21,6 +22,8 @@ await connectCloudinary() // set up cloudinary for image storage
 
 // allowed multiple origins
 const allowedOrigins = ["http://localhost:5173"]
+
+app.post('/stripe',express.raw({type: 'application/json'}),stripeWebhooks)
 
 // middleware setup
 
