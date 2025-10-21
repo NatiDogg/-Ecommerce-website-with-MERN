@@ -21,12 +21,12 @@ await connectDB() // establish connection to the database
 await connectCloudinary() // set up cloudinary for image storage
 
 // allowed multiple origins
-const allowedOrigins = ["http://localhost:5173", "https://ecommerce-website-with-mern.vercel.app/"]
+const allowedOrigins = ["http://localhost:5173", "https://nati-shopping.vercel.app/"]
 
 app.post('/stripe',express.raw({type: 'application/json'}),stripeWebhooks)
 
 // middleware setup
-
+ 
 app.use(express.json()) // enable json request body parsing
 app.use(cookieParser()) // cookie-parser middleware to parse HTTP request cookies
 app.use(cors({
