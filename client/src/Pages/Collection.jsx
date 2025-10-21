@@ -56,7 +56,7 @@ const Collection = () => {
             data-testid = "pagination-prev"
             onClick={() => handlePageChange(currentPage - 1)}
             disabled={currentPage === 1}
-            className='px-4 py-2 border rounded-md disabled:opacity-60 bg-black text-white '
+            className='px-3 py-1 md:px-6 md:py-2 border rounded-md disabled:opacity-60 bg-black text-white '
           >
             Previous
           </button>
@@ -65,7 +65,7 @@ const Collection = () => {
               data-testid= {`pagination-page-${number}`}
               key={number}
               onClick={() => handlePageChange(number)}
-              className={`px-6 py-2 border rounded-md ${currentPage === number ? 'bg-black text-white' : ''}`}
+              className={` px-3 py-1 md:px-6 md:py-2 border rounded-md ${currentPage === number ? 'bg-black text-white' : ''}`}
             >
               {number}
             </button> 
@@ -74,7 +74,7 @@ const Collection = () => {
             data-testid = "pagination-next"
             onClick={() => handlePageChange(currentPage + 1)}
             disabled={currentPage === totalPages}
-            className='px-6 py-2 border rounded-md disabled:opacity-60 bg-black text-white'
+            className='px-3 py-1 md:px-6 md:py-2 border rounded-md disabled:opacity-60 bg-black text-white'
           >
             Next
           </button>
