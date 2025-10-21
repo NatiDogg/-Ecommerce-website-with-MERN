@@ -91,9 +91,9 @@ const SideBar = () => {
                    })}
 
                    <div className='max-sm:ml-5 sm:mt-40 text-center px-9 '>
-                      <button className='flex gap-1 items-center text-red-500 '>
+                      <button onClick={logOut} className='flex gap-1 items-center text-red-500 '>
                           <BiLogOut className='text-md sm:text-lg ' />
-                            <div onClick={logOut}  className='hidden sm:flex '>
+                            <div   className='hidden sm:flex '>
                                Logout
                             </div>
                       </button>
