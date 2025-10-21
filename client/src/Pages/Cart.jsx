@@ -38,7 +38,7 @@ const Cart = () => {
         
     }
   return (
-    <section data-testid = "cart-page" className='px-6 py-6 w-full bg-gray-100'>
+    <section data-testid = "cart-page" className='px-6 py-6 w-full  bg-gray-100'>
        <div className='max-w-[1360px] mx-auto px-4 py-4 flex flex-col gap-8 '>
            
            <div className=' w-[70%] lg:w-[33%] flex flex-col gap-1'>

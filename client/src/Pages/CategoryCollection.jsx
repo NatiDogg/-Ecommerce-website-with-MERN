@@ -1,18 +1,18 @@
-import React,{useState,useEffect} from 'react'
+import React,{useState,useEffect,useContext} from 'react'
 import {useLocation,useParams} from 'react-router-dom'
-import { dummyProducts } from '../Data/data.js';
+import { shopContext } from '../Context/ShopContextProvider.jsx';
 import Item from '../Components/Item.jsx';
 
 const CategoryCollection = () => {
        const [product, setProduct] = useState([]);
-       
+       const {products} = useContext(shopContext);
       
        const {category} = useParams();
         
        
       
        useEffect(()=>{
-         const filteredProducts = dummyProducts.filter((product)=> product.category.toLowerCase() === category);
+         const filteredProducts = products.filter((product)=> product.category.toLowerCase() === category);
         
          setProduct(filteredProducts);
           
